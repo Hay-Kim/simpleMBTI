@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>MBTI 조사</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace; /* 터미널 느낌의 폰트 */
+            background-color: #000000; /* 검정 배경 */
+            color: #00FF00; /* 녹색 텍스트 */
+            text-align: center;
+            padding: 20px;
+        }
+        form {
+            background-color: #000000; /* 검정 배경 */
+            border: 1px solid #00FF00; /* 녹색 테두리 */
+            border-radius: 5px;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        h1, p {
+            color: #00FF00; /* 녹색 텍스트 */
+        }
+        label {
+            display: block;
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            background-color: #00FF00; /* 녹색 버튼 배경 */
+            color: black;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00CC00; /* 버튼 호버 색상 */
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>MBTI 성격 유형 조사</h1>
+    <p>아래 질문에 답해주세요.</p>
+    <form id="mbti-form">
+        <!-- Extraversion vs Introversion -->
+        <fieldset>
+            <legend>1. 에너지 얻기:</legend>
+            <label><input type="radio" name="energy" value="E" required> 사람들과 대화하는 것</label>
+            <label><input type="radio" name="energy" value="I"> 혼자 시간을 보내는 것</label>
+        </fieldset>
+        
+        <!-- Sensing vs Intuition -->
+        <fieldset>
+            <legend>2. 정보 처리:</legend>
+            <label><input type="radio" name="information" value="S" required> 구체적이고 실용적인 정보</label>
+            <label><input type="radio" name="information" value="N"> 추상적이고 미래 지향적인 정보</label>
+        </fieldset>
+        
+        <!-- Thinking vs Feeling -->
+        <fieldset>
+            <legend>3. 의사 결정:</legend>
+            <label><input type="radio" name="decision" value="T" required> 논리적이고 객관적인 기준</label>
+            <label><input type="radio" name="decision" value="F"> 감정과 가치 기준</label>
+        </fieldset>
+        
+        <!-- Judging vs Perceiving -->
+        <fieldset>
+            <legend>4. 생활 방식:</legend>
+            <label><input type="radio" name="lifestyle" value="J" required> 계획적이고 조직적인</label>
+            <label><input type="radio" name="lifestyle" value="P"> 유연하고 즉흥적인</label>
+        </fieldset>
+        
+        <!-- Submit Button -->
+        <button type="button" onclick="calculateMBTI()">제출</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateMBTI() {
+            // 선택된 항목의 값을 가져옵니다
+            const energy = document.querySelector('input[name="energy"]:checked').value;
+            const information = document.querySelector('input[name="information"]:checked').value;
+            const decision = document.querySelector('input[name="decision"]:checked').value;
+            const lifestyle = document.querySelector('input[name="lifestyle"]:checked').value;
+
+            // MBTI 유형을 생성합니다
+            const mbtiType = `${energy}${information}${decision}${lifestyle}`;
+
+            // 결과를 화면에 표시합니다
+            document.getElementById('result').innerText = `당신의 MBTI 유형은 ${mbtiType}입니다.`;
+        }
+    </script>
+</body>
+</html>
